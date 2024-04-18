@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 name = 'ComfyUI'
 
 version = '1.0.0.sse.1.0.1'
@@ -7,6 +5,10 @@ version = '1.0.0.sse.1.0.1'
 description = 'ComfyUI'
 
 authors = ['ComfyUI']
+
+with scope('config') as c:
+    import os
+    c.release_packages_path = os.environ['SSE_REZ_REPO_RELEASE_EXT']
 
 requires = [
     'python-3',
@@ -55,11 +57,6 @@ def commands():
     executable = "python3 {root}/main.py --multi-user --auto-launch --listen=127.0.0.1 --port=8188"
     alias("comfyui", executable)
 
-with scope('config') as config:
-    config.release_packages_path = '/mnt/rez/usd_pipe_rocky/release/ext'
 
+build_command = 'rez python {root}/rez_build.py'
 uuid = 'repository.ComfyUI'
-
-timestamp = 1713477216
-
-format_version = 2

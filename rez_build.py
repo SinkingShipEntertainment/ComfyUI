@@ -37,6 +37,9 @@ def get_all_files(source_dir):
     ignore = [
         ".gitignore",
         "README.md",
+        "package.py",
+        "rez_build.py",
+        "parse_build_args.py",
     ]
 
     ignore_ext = [
