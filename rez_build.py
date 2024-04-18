@@ -20,7 +20,8 @@ def get_all_dirs(source_dir):
 
     result = []
     for d in os.listdir(source_dir):
-        if not os.path.isdir(d):
+        fullpath = os.path.join(source_dir, d)
+        if not os.path.isdir(fullpath):
             continue
         if d in ignore:
             continue
@@ -43,7 +44,8 @@ def get_all_files(source_dir):
 
     result = []
     for f in os.listdir(source_dir):
-        if not os.path.isfile(f):
+        fullpath = os.path.join(source_dir, f)
+        if not os.path.isfile(fullpath):
             continue
         if f in ignore:
             continue
