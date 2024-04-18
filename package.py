@@ -1,44 +1,38 @@
+# -*- coding: utf-8 -*-
+
 name = 'ComfyUI'
 
-version = '1.0.0.sse.1.0.0'
+version = '1.0.0.sse.1.0.1'
 
-authors = [
-    'ComfyUI',
-]
+description = 'ComfyUI'
 
-description = '''ComfyUI'''
-
-with scope('config') as c:
-    import os
-    c.release_packages_path = os.environ['SSE_REZ_REPO_RELEASE_EXT']
+authors = ['ComfyUI']
 
 requires = [
-    "python-3",
-    "aiohttp",
-    "einops",
-    "fairscale",
-    "kornia-0.6.9",
-    "pillow",
-    "PyYAML",
-    "psutil",
-    "safetensors",
-    "scipy",
-    "torch",
-    "torchsde",
-    "torchaudio",
-    "torchdata",
-    "torchmetrics",
-    "torchvision",
-    "tqdm",
-    "transformers-4.19.1",
-    "sse_nvidia_cuda-12",
+    'python-3',
+    'aiohttp',
+    'einops',
+    'fairscale',
+    'kornia-0.6.9',
+    'pillow',
+    'PyYAML',
+    'psutil',
+    'safetensors',
+    'scipy',
+    'torch',
+    'torchsde',
+    'torchaudio',
+    'torchdata',
+    'torchmetrics',
+    'torchvision',
+    'tqdm',
+    'transformers-4.19.1',
+    'sse_nvidia_cuda-12'
 ]
 
-private_build_requires = [
-]
+private_build_requires = []
 
-variants = [
-]
+variants = []
 
 def commands():
     env.REZ_COMFYUI_ROOT = '{root}'
@@ -58,9 +52,14 @@ def commands():
         env.COMFYUI_SSE_VERSION = internal_version
 
     # Alias
-    executable = "python3 {root}/main.py --multi-user --auto_launch"
+    executable = "python3 {root}/main.py --multi-user --auto-launch --listen=127.0.0.1 --port=8188"
     alias("comfyui", executable)
 
+with scope('config') as config:
+    config.release_packages_path = '/mnt/rez/usd_pipe_rocky/release/ext'
 
-build_command = 'rez python {root}/rez_build.py'
 uuid = 'repository.ComfyUI'
+
+timestamp = 1713477216
+
+format_version = 2

@@ -77,6 +77,23 @@ else:
     input_directory = os.path.join(user_home_dir, "input")
     user_directory = os.path.join(user_home_dir, "user")
 
+    # Create the directories if not exist
+    dir_paths = []
+    for label in folder_names_and_paths:
+        dir_list = folder_names_and_paths[label][0]
+        dir_paths.extend(dir_list)
+
+    dir_paths.append(output_directory)
+    dir_paths.append(temp_directory)
+    dir_paths.append(input_directory)
+    dir_paths.append(user_directory)
+
+    for dir_path in dir_paths:
+        if not os.path.exists(dir_path):
+            try:
+                os.makedirs(dir_path)
+            except:
+                logging.error("Failed to create " + dir_path)
 
 
 

@@ -14,6 +14,7 @@ def get_all_dirs(source_dir):
 
     ignore = [
         ".git",
+        "_rez_build",
         ".vscode",
         ".idea",
     ]
@@ -85,7 +86,7 @@ def copy_dirs_and_files(dirs, files, source_dir, dest_dir):
             print(str(e))
 
 
-def symlink(dirs, source_dir, dest_dir):
+def symlink(dirs, files, source_dir, dest_dir):
 
     if (len(dirs) == 1) and (dirs[0] == "*"):
         dirs = get_all_dirs(source_dir)
@@ -104,6 +105,21 @@ def symlink(dirs, source_dir, dest_dir):
 
             print("Symlinking: {0} --> {1}".format(symlink, src_d))
             os.symlink(src_d, symlink)
+        except Exception as e:
+            print(str(e))
+
+    # Symlink all the desired files
+    for f in files:
+        try:
+            src_f = source_dir + "/" + f
+            symlink = dest_dir + "/" + f
+
+            parent_dir = os.path.dirname(symlink)
+            if not os.path.isdir(parent_dir):
+                os.makedirs(parent_dir)
+
+            print("Symlinking: {0} --> {1}".format(symlink, src_f))
+            os.symlink(src_f, symlink)
         except Exception as e:
             print(str(e))
 
@@ -146,7 +162,7 @@ if __name__ == "__main__":
 
 
         if ("__PARSE_ARG_SYMLINK" in os.environ) and (str2bool(os.environ["__PARSE_ARG_SYMLINK"])):
-            symlink(DIRECTORY_LIST, source_dir, dest_dir)
+            symlink(DIRECTORY_LIST, FILE_LIST, source_dir, dest_dir)
         else:
             copy_dirs_and_files(DIRECTORY_LIST, FILE_LIST, source_dir, dest_dir)
 
