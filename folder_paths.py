@@ -34,10 +34,17 @@ folder_names_and_paths["photomaker"] = ([os.path.join(models_dir, "photomaker")]
 
 folder_names_and_paths["classifiers"] = ([os.path.join(models_dir, "classifiers")], {""})
 
-output_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "output")
-temp_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "temp")
-input_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "input")
-user_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "user")
+# output_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "output")
+# temp_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "temp")
+# input_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "input")
+# user_directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "user")
+
+# SSE
+user_home_dir = os.path.join(os.path.expanduser("~"), "ComfyUI")
+output_directory = os.path.join(user_home_dir, "output")
+temp_directory = os.path.join(user_home_dir, "temp")
+input_directory = os.path.join(user_home_dir, "input")
+user_directory = os.path.join(user_home_dir, "user")
 
 filename_list_cache = {}
 
