@@ -58,7 +58,7 @@ def commands():
         env.COMFYUI_SSE_VERSION = internal_version
 
     # Alias
-    executable = "python3 {root}/main.py --multi-user"
+    executable = "python3 {root}/main.py --multi-user --auto_launch"
     alias("comfyui", executable)
 
 

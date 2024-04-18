@@ -47,6 +47,7 @@ execute_prestartup_script()
 
 
 # Main code
+import signal
 import asyncio
 import itertools
 import shutil
@@ -187,6 +188,21 @@ def load_extra_path_config(yaml_path):
                 folder_paths.add_model_folder_path(x, full_path)
 
 
+async def shutdown(signal, loop):
+    """Cleanup tasks tied to the service's shutdown."""
+
+    logging.info(f"Received exit signal {signal.name}...")
+    logging.info("Closing ComfyUI")
+
+    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
+    [task.cancel() for task in tasks]
+
+    logging.info(f"Cancelling {len(tasks)} outstanding tasks")
+    await asyncio.gather(*tasks)
+    logging.info(f"Flushing metrics")
+    loop.stop()
+
+
 if __name__ == "__main__":
     if args.temp_directory:
         temp_dir = os.path.join(os.path.abspath(args.temp_directory), "temp")
@@ -250,9 +266,14 @@ if __name__ == "__main__":
             webbrowser.open(f"http://{address}:{port}")
         call_on_start = startup_server
 
+    signals = (signal.SIGHUP, signal.SIGTERM, signal.SIGINT)
+    for s in signals:
+        loop.add_signal_handler(s, lambda s=s: asyncio.create_task(shutdown(s, loop)))
+
     try:
         loop.run_until_complete(run(server, address=args.listen, port=args.port, verbose=not args.dont_print_server, call_on_start=call_on_start))
-    except KeyboardInterrupt:
-        logging.info("\nStopped server")
+    finally:
+        loop.close()
+        logging.info("\nClosed server")
 
     cleanup_temp()
