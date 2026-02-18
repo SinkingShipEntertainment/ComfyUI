@@ -59,6 +59,16 @@ user_directory = os.path.join(base_path, "user")
 
 filename_list_cache: dict[str, tuple[list[str], dict[str, float], float]] = {}
 
+# SSE - Create user directories
+for label in folder_names_and_paths:
+    dir_list = folder_names_and_paths[label][0]
+    for dir_path in dir_list:
+        if not os.path.exists(dir_path):
+            try:
+                os.makedirs(dir_path)
+            except:
+                logging.error("Failed to create: " + dir_path)
+
 class CacheHelper:
     """
     Helper class for managing file list cache data.
