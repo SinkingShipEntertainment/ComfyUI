@@ -97,6 +97,13 @@ def apply_custom_paths():
                                        os.path.join(folder_paths.get_output_directory(), "diffusion_models"))
     folder_paths.add_model_folder_path("loras", os.path.join(folder_paths.get_output_directory(), "loras"))
 
+    # SSE - Dynamically add various custom node paths to comfyui based on an env
+    # variable that is populated by each custom node rez package that is resolved.
+    custom_nodes_path = os.environ.get("COMFYUI_CUSTOM_NODES_PATH")
+    if custom_nodes_path:
+        for custom_node_path in custom_nodes_path.split(":"):
+            folder_paths.add_model_folder_path("custom_nodes", custom_node_path)
+
     if args.input_directory:
         input_dir = os.path.abspath(args.input_directory)
         logging.info(f"Setting input directory to: {input_dir}")
