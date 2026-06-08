@@ -1,6 +1,6 @@
 name = 'ComfyUI'
 
-version = '0.19.3.sse.1.0.0'
+version = '0.24.1.sse.1.0.0'
 
 description = 'ComfyUI'
 
@@ -11,41 +11,41 @@ with scope('config') as c:
     c.release_packages_path = os.environ['SSE_REZ_REPO_RELEASE_EXT']
 
 requires = [
-    'comfyui_frontend_package-1.42.12',
-    'comfyui_workflow_templates-0.9.57',
-    'comfyui_embedded_docs-0.4.3',
+    'comfyui_frontend_package-1.44.19',
+    'comfyui_workflow_templates-0.9.98',
+    'comfyui_embedded_docs-0.5.2',
     'python-3',
     'torch',
     'torchsde',
     'torchvision',
     'torchaudio',
-    'numpy',
+    'numpy-1.25+',
     'einops',
-    'transformers',
-    'tokenizers',
+    'transformers-4.50.3+',
+    'tokenizers-0.13.3+',
     'sentencepiece',
-    'safetensors',
-    'aiohttp',
-    'yarl',
+    'safetensors-0.4.2+',
+    'aiohttp-2.11.8+',
+    'yarl-1.18.0+',
     'PyYAML',
     'pillow',
     'scipy',
     'tqdm',
     'psutil',
     'alembic',
-    'SQLAlchemy',
+    'SQLAlchemy-2.0.0+',
     'filelock',
-    'av',
-    'comfy_kitchen',
-    'comfy_aimdo',
+    'av-16.0.0+',
+    'comfy_kitchen-0.2.10',
+    'comfy_aimdo-0.4.8',
     'requests',
-    'simpleeval',
+    'simpleeval-1.0.0+',
     'blake3',
 
-    'kornia',
+    'kornia-0.7.1+',
     'spandrel',
-    'pydantic',
-    'pydantic_settings',
+    'pydantic-2', # equivalent to pydantic~=2.0, which means "any version in the 2.x series"
+    'pydantic_settings-2',
     'PyOpenGL',
 
     # The python wrapper for glfw (v2.1.0) is getting overruled by another
