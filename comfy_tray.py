@@ -33,6 +33,7 @@ ICON_PATH = os.path.join(BASE_DIR, "tray_icon.ico")
 COMFY_PATH = os.path.join(BASE_DIR, "main.py")
 LOCAL_MODELS = os.path.expanduser("~/comfyui/models")
 GLOBAL_MODELS = "/mnt/vfx/projects/SSELibrary/work/comfyui/models"
+GLOBAL_WORKFLOWS = "/mnt/vfx/projects/SSELibrary/work/comfyui/workflows"
 
 
 class ComfyTray:
@@ -104,9 +105,17 @@ class ComfyTray:
 
         base_directory = os.path.expanduser("~/comfyui")
 
+        workflows_dir = os.path.join(base_directory, "user", "default", "workflows")
+        os.makedirs(workflows_dir, exist_ok=True)
+        sselibrary_link = os.path.join(workflows_dir, "SSELibrary")
+        if not os.path.islink(sselibrary_link) and not os.path.exists(sselibrary_link):
+            os.symlink(GLOBAL_WORKFLOWS, sselibrary_link)
+
         cmd_list = ["python3", COMFY_PATH, "--base-directory", base_directory]
         if auto_launch:
             cmd_list.append("--auto-launch")
+
+        # cmd_list.append("--disable-all-custom-nodes")
 
         self.worker = subprocess.Popen(
             cmd_list,
