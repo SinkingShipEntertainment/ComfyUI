@@ -1,6 +1,6 @@
 name = 'ComfyUI'
 
-version = '0.24.1.sse.1.1.0'
+version = '0.34.2.sse.1.0.0'
 
 description = 'ComfyUI'
 
@@ -11,9 +11,9 @@ with scope('config') as c:
     c.release_packages_path = os.environ['SSE_REZ_REPO_RELEASE_EXT']
 
 requires = [
-    'comfyui_frontend_package-1.44.19',
-    'comfyui_workflow_templates-0.9.98',
-    'comfyui_embedded_docs-0.5.2',
+    'comfyui_frontend_package-1.49.6',
+    'comfyui_workflow_templates-0.11.50',
+    'comfyui_embedded_docs-0.5.10',
     'python-3',
     'torch',
     'torchsde',
@@ -35,23 +35,24 @@ requires = [
     'alembic',
     'SQLAlchemy-2.0.0+',
     'filelock',
-    'av-16.0.0+',
-    'comfy_kitchen-0.2.10',
-    'comfy_aimdo-0.4.8',
+    'av-17.0.0+',
+    'comfy_kitchen-0.2.31',
+    'comfy_aimdo-0.4.15',
     'requests',
     'simpleeval-1.0.0+',
     'blake3',
 
+    # non essential dependencies:
     'kornia-0.7.1+',
     'spandrel',
     'pydantic-2', # equivalent to pydantic~=2.0, which means "any version in the 2.x series"
     'pydantic_settings-2',
-    'PyOpenGL',
-
+    'PyOpenGL-3.1.8+',
+    'comfy_angle'
     # The python wrapper for glfw (v2.1.0) is getting overruled by another
     # rez package also called glfw (v3.4.0). To get around this, the required
     # glfw package was installed and manually changed to "python_glfw"
-    'python_glfw',
+    # 'python_glfw',
 ]
 
 private_build_requires = []
