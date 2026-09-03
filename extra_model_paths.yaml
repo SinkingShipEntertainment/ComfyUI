@@ -54,6 +54,8 @@ comfyui:
     classifiers: models/classifiers/
     model_patches: models/model_patches/
     audio_encoders: models/audio_encoders/
+    background_removal: models/background_removal/
+
 
 #config for a1111 ui
 #all you have to do is uncomment this (remove the #) and change the base_path to where yours is installed
