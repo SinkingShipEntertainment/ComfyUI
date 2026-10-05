@@ -25,7 +25,7 @@
 #     model_patches: models/model_patches/
 
 comfyui:
-    base_path: /mnt/vfx/projects/SSELibrary/work/comfyui/
+    base_path: /mnt/vfx/projects/SSELibrary/libraries/comfyui/
     is_default: false
     checkpoints: models/checkpoints/
     configs: models/configs/

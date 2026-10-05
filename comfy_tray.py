@@ -32,8 +32,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ICON_PATH = os.path.join(BASE_DIR, "tray_icon.ico")
 COMFY_PATH = os.path.join(BASE_DIR, "main.py")
 LOCAL_MODELS = os.path.expanduser("~/comfyui/models")
-GLOBAL_MODELS = "/mnt/vfx/projects/SSELibrary/work/comfyui/models"
-GLOBAL_WORKFLOWS = "/mnt/vfx/projects/SSELibrary/work/comfyui/workflows"
+GLOBAL_MODELS = "/mnt/vfx/projects/SSELibrary/libraries/comfyui/models"
+GLOBAL_WORKFLOWS = "/mnt/vfx/projects/SSELibrary/libraries/comfyui/workflows"
 
 
 class ComfyTray:
