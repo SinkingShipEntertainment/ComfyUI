@@ -108,7 +108,9 @@ class ComfyTray:
         workflows_dir = os.path.join(base_directory, "user", "default", "workflows")
         os.makedirs(workflows_dir, exist_ok=True)
         sselibrary_link = os.path.join(workflows_dir, "SSELibrary")
-        if not os.path.islink(sselibrary_link) and not os.path.exists(sselibrary_link):
+        if os.path.islink(sselibrary_link) and os.readlink(sselibrary_link) != GLOBAL_WORKFLOWS:
+            os.remove(sselibrary_link)
+        if not os.path.lexists(sselibrary_link):
             os.symlink(GLOBAL_WORKFLOWS, sselibrary_link)
 
         cmd_list = ["python3", COMFY_PATH, "--base-directory", base_directory]

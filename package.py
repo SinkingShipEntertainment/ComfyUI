@@ -1,6 +1,6 @@
 name = 'ComfyUI'
 
-version = '0.39.0.sse.1.0.0'
+version = '0.39.0.sse.1.0.1'
 
 description = 'ComfyUI'
 
