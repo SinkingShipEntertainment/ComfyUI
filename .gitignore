@@ -7,7 +7,7 @@ __pycache__/
 /temp/
 /custom_nodes/
 !custom_nodes/example_node.py.example
-extra_model_paths.yaml
+# extra_model_paths.yaml  #SSE--> we want our extra_model_paths.yaml to be backup up.
 /.vs
 .vscode/
 .idea/
@@ -25,3 +25,5 @@ filtered-openapi.yaml
 uv.lock
 .comfy_environment
 /previews/
+
+_rez_build
