@@ -56,6 +56,7 @@ comfyui:
     audio_encoders: models/audio_encoders/
     background_removal: models/background_removal/
     geometry_estimation: models/geometry_estimation/
+    corridorkey2: models/corridorkey2/
 
 #config for a1111 ui
 #all you have to do is uncomment this (remove the #) and change the base_path to where yours is installed
